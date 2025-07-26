@@ -46,6 +46,7 @@
         <intent>
             <action android:name="android.intent.action.MEDIA_BUTTON" />
         </intent>
+        
         <!-- Search for browsers to open Spotify Web Auth -->
         <intent>
             <action android:name="android.intent.action.VIEW" />
@@ -69,9 +70,15 @@
         <intent>
             <action android:name="io.bimmergestalt.carconnection.service" />
         </intent>
+        
         <!-- Check for the Xiaomi Calendar -->
-        <package android:name="com.xiaomi.calendar" />
-    </queries>
+     
+      <package android:name="com.xiaomi.calendar" />
+    <!-- Allow external navigation apps -->
+    <package android:name="com.google.android.apps.maps" />
+    <package android:name="com.waze" />
+</queries>
+
 
     <application
         android:name=".ApplicationCallbacks"
@@ -80,6 +87,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+
         tools:ignore="GoogleAppIndexingWarning">
 
         <activity android:name=".phoneui.SpotifyAuthorizationActivity" />
@@ -135,8 +143,10 @@
                 <data android:scheme="https" />
                 <data android:host="plus.codes" />
                 <data android:pathPattern="/2.*" />
+                
                 <data android:pathPattern="/3.*" />
                 <data android:pathPattern="/4.*" />
+         
                 <data android:pathPattern="/5.*" />
                 <data android:pathPattern="/6.*" />
                 <data android:pathPattern="/7.*" />
@@ -171,7 +181,8 @@
                 <data android:host="www.google.com" />
                 <data android:pathPrefix="/maps/search" />
                 <data android:pathPrefix="/maps/place" />
-                <data android:pathPrefix="/maps/dir" />
+                <
+                    data android:pathPrefix="/maps/dir" />
             </intent-filter>
             <!-- shortener -->
             <intent-filter>
@@ -205,7 +216,8 @@
                 <data android:host="maps.google.ae" />
                 <data android:host="maps.google.as" />
                 <data android:host="maps.google.at" />
-                <data android:host="maps.google.ba" />
+                <data
+                    android:host="maps.google.ba" />
                 <data android:host="maps.google.be" />
                 <data android:host="maps.google.bf" />
                 <data android:host="maps.google.bg" />
@@ -239,7 +251,8 @@
                 <data android:host="maps.google.co.mz" />
                 <data android:host="maps.google.co.nz" />
                 <data android:host="maps.google.co.th" />
-                <data android:host="maps.google.co.tz" />
+                <data
+                    android:host="maps.google.co.tz" />
                 <data android:host="maps.google.co.ug" />
                 <data android:host="maps.google.co.uk" />
                 <data android:host="maps.google.co.ve" />
@@ -273,7 +286,8 @@
                 <data android:host="maps.google.com.jm" />
                 <data android:host="maps.google.com.kh" />
                 <data android:host="maps.google.com.kw" />
-                <data android:host="maps.google.com.lb" />
+                <data
+                    android:host="maps.google.com.lb" />
                 <data android:host="maps.google.com.ly" />
                 <data android:host="maps.google.com.mm" />
                 <data android:host="maps.google.com.mt" />
