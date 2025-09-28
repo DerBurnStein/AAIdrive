@@ -18,6 +18,11 @@ import me.hufman.androidautoidrive.carapp.maps.*
 import me.hufman.androidautoidrive.carapp.navigation.NavigationTrigger.Companion.TAG
 import me.hufman.androidautoidrive.maps.LatLong
 import me.hufman.androidautoidrive.utils.getParcelableExtraCompat
+import me.hufman.androidautoidrive.navigation.ExternalNavigationSettings
+import me.hufman.androidautoidrive.navigation.ExternalNavigationSettings.ExternalNavigationApp
+import me.hufman.androidautoidrive.navigation.ExternalNavigationLauncher.NavigationApp
+import me.hufman.androidautoidrive.carapp.navigation.NavigationTriggerExternal
+
 
 interface NavigationTrigger {
 	companion object {
@@ -99,7 +104,25 @@ class NavigationTriggerReceiver(val trigger: NavigationTrigger): BroadcastReceiv
 	override fun onReceive(p0: Context?, p1: Intent?) {
 		val destination = p1?.getParcelableExtraCompat(EXTRA_DESTINATION, Address::class.java)
 		if (destination != null) {
-			trigger.triggerNavigation(destination)
+		
+			        p0?.let { ctx ->
+            when (val extPref = ExternalNavigationSettings.getPreferredNavigationApp(ctx)) {
+                ExternalNavigationApp.GOOGLE_MAPS,
+                ExternalNavigationApp.WAZE -> {
+                    val navApp = if (extPref == ExternalNavigationApp.WAZE) {
+                        NavigationApp.WAZE
+                    } else {
+                        NavigationApp.GOOGLE_MAPS
+                    }
+                    NavigationTriggerExternal(ctx, navApp).triggerNavigation(destination)
+                    return
+                }
+                else -> {
+                    // OFF: fall through
+                }
+            }
+        }
+trigger.triggerNavigation(destination)
 		}
 	}
 
