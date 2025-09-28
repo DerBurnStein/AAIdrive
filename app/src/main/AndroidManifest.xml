@@ -1181,5 +1181,11 @@
         <meta-data
             android:name="com.spotify.music.API_KEY"
             android:value="${spotify_api_key}" />
+   
+            <!-- Register Mapbox Navigation activity -->
+            <activity
+                android:name=".navigation.MapboxNavigationActivity"
+                android:label="Mapbox Navigation"
+                android:exported="true" />
     </application>
 </manifest>
